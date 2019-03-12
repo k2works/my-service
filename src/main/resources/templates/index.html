@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>top page</title>
-    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <style>
         h1 { font-size:18pt; font-weight:bold; color:gray; }
         body { font-size:13pt; color:gray; margin:5px 25px; }
@@ -11,9 +11,10 @@
     </style>
 </head>
 <body>
-<h1>Helo page</h1>
+<h1 th:text="'Helo ' + ${env} + ' page'">Helo page</h1>
 <p class="msg" th:text="${msg}">please wait...</p>
-<form action="/helo" method="post">
+
+<form method="post">
     <div>
         <input type="checkbox" id="check1" name="check1"/>
         <label for="check1">チェク</label>
@@ -40,5 +41,18 @@
     </div>
     <input type="submit" value="Click"/>
 </form>
+
+<script th:inline="javascript">
+        function setActionUrl() {
+            var env = /*[[${env}]]*/;
+
+            if (env === 'production') {
+               document.forms[0].action = "/Prod/helo";
+            } else {
+               document.forms[0].action = "/helo";
+            }
+        }
+        setActionUrl();
+</script>
 </body>
 </html>

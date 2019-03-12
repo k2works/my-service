@@ -3,3 +3,4 @@
 build/
 my-service.iml
 output-sam.yaml
+packaged.yaml

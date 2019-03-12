@@ -1,7 +1,6 @@
 package my.service.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,9 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HeloController {
+    private static String ENV = "ENV";
 
     @RequestMapping(value = "/helo", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
+        setEnv(mav);
         mav.setViewName("index");
         mav.addObject("msg", "フォームを送信して下さい。");
         return mav;
@@ -39,6 +40,7 @@ public class HeloController {
         } catch (NullPointerException e) {
             res += "null";
         }
+        setEnv(mav);
         mav.addObject("msg", res);
         mav.setViewName("index");
         return mav;
@@ -46,11 +48,27 @@ public class HeloController {
 
     @RequestMapping("/other")
     public String other() {
-        return "redirect:/helo";
+        String ret;
+        if (getEnv().equals("production")) {
+          ret = "redirect:/Prod/helo";
+        } else {
+          ret = "redirect:/helo";
+        }
+        return ret;
     }
 
     @RequestMapping("/home")
     public String home() {
         return "forward:/helo";
+    }
+
+    private void setEnv(ModelAndView mav) {
+        mav.addObject("env", getEnv());
+    }
+
+    private String getEnv() {
+        String env = System.getenv(ENV);
+        if (env == null) return "development";
+        return env;
     }
 }

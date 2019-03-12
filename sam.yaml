@@ -5,12 +5,21 @@ Globals:
   Api:
     EndpointConfiguration: REGIONAL
 
+Parameters:
+  ENV:
+    Type: String
+    Default: "development"
+    Description: Target Environment
+
 Resources:
   MyServiceFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: my.service.StreamLambdaHandler::handleRequest
       Runtime: java8
+      Environment:
+        Variables:
+          ENV: !Ref ENV
       CodeUri: target/my-service-1.0-SNAPSHOT-lambda-package.zip
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
