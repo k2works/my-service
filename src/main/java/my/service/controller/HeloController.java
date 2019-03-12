@@ -43,4 +43,14 @@ public class HeloController {
         mav.setViewName("index");
         return mav;
     }
+
+    @RequestMapping("/other")
+    public String other() {
+        return "redirect:/helo";
+    }
+
+    @RequestMapping("/home")
+    public String home() {
+        return "forward:/helo";
+    }
 }
