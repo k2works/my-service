@@ -15,9 +15,9 @@
 
 ## 構成
 
-- 構築(#構築)
-- 配置(#配置)
-- 運用(#運用)
+- [構築](#構築)
+- [配置](#配置)
+- [運用](#運用)
 
 ## 詳細
 
@@ -56,6 +56,10 @@ $ sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --ca
 **[⬆ back to top](#構成)**
 
 ### 運用
+
+```bash
+$ aws cloudformation delete-stack --stack-name ServerlessSpringApi
+```
 
 **[⬆ back to top](#構成)**
 
