@@ -10,6 +10,7 @@
         tr { margin:5px; }
         th { padding:5px; color:white; background:darkgray; }
         td { padding:5px; color:black; background:#f0f0f0;}
+        .err { color:red; }
     </style>
 </head>
 <body>
@@ -46,6 +47,9 @@
 
 <table>
 <form method="post" action="/" th:object="${formModel}">
+    <ul>
+        <li th:each="error : ${#fields.detailedErrors()}" class="err" th:text="${error.message}" />
+    </ul>
     <tr>
         <td>
             <label for="name">名前</label>

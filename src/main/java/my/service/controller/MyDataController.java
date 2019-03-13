@@ -6,6 +6,8 @@ import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,10 +58,22 @@ public class MyDataController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView form(
-            @ModelAttribute("formModel") MyData myData,
+            @ModelAttribute("formModel")
+            @Validated MyData myData,
+            BindingResult result,
             ModelAndView mav) {
-        repository.saveAndFlush(myData);
-        return new ModelAndView("redirect:/");
+        ModelAndView res = null;
+        if (!result.hasErrors()) {
+            repository.saveAndFlush(myData);
+            res = new ModelAndView("redirect:/");
+        } else {
+            mav.setViewName("index");
+            mav.addObject("msg","sorry, error is occured...");
+            Iterable<MyData> list = repository.findAll();
+            mav.addObject("datalist", list);
+            res = mav;
+        }
+        return res;
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
