@@ -1,7 +1,12 @@
 package my.service.model;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="mydata")
@@ -14,16 +19,16 @@ public class MyData {
     private long id;
 
     @Column(length = 50, nullable = false)
-    @NotEmpty(message = "空白は不可")
+    @NotEmpty
     private String name;
 
     @Column(length = 200, nullable = true)
-    @Email(message = "メールアドレスのみ")
+    @Email
     private String mail;
 
     @Column(nullable = true)
-    @Min(value = 0, message = "ゼロ以上")
-    @Max(value = 200, message = "200以下")
+    @Min(0)
+    @Max(200)
     private Integer age;
 
     @Column(nullable = true)
