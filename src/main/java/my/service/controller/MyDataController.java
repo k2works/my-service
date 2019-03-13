@@ -127,7 +127,7 @@ public class MyDataController {
         mav.addObject("title", "Find Page");
         mav.addObject("msg","MyDataのサンプルです。");
         mav.addObject("value","");
-        Iterable<MyData> list = dao.getAll();
+        Iterable<MyData> list = dao.findByAge(10,40);
         mav.addObject("datalist", list);
         return mav;
     }

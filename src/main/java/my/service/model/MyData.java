@@ -14,6 +14,10 @@ import javax.validation.constraints.Email;
         name="findWithName",
         query="from MyData where name like :fname"
 )
+@NamedQuery(
+        name="findByAge",
+        query = "from MyData where age > :min and age < :max"
+)
 public class MyData {
 
     @Id
