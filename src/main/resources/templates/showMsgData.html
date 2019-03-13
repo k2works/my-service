@@ -36,5 +36,18 @@
         </tr>
     </form>
 </table>
+<hr/>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>タイトル</th>
+    </tr>
+    <tr th:each="obj : ${datalist}">
+        <td th:text="${obj.id}"></td>
+        <td th:text="${obj.mysata.name}"></td>
+        <td th:text="${obj.title}"></td>
+    </tr>
+</table>
 </body>
 </html>
