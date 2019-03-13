@@ -29,7 +29,7 @@ public class MyDataDaoImpl implements MyDataDao<MyData> {
        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
        CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
        Root<MyData> root = query.from(MyData.class);
-       query.select(root);
+       query.select(root).orderBy(builder.asc(root.get("name")));
        list = (List<MyData>)entityManager
                .createQuery(query)
                .getResultList();
