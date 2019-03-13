@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Table(name="mydata")
@@ -43,6 +44,13 @@ public class MyData {
     @Phone(onlyNumber = true)
     private String memo;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private List<MsgData> msgdatas;
+
+    public void setMsgdatas(List<MsgData> msgdatas) {
+        this.msgdatas = msgdatas;
+    }
     public long getId() {
         return id;
     }
