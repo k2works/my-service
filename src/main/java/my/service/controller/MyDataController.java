@@ -62,7 +62,7 @@ public class MyDataController {
             ModelAndView mav) {
         mav.setViewName("index");
         mav.addObject("msg","MyDataのサンプルです。");
-        Iterable<MyData> list = repository.findAllOrderByName();
+        Iterable<MyData> list = dao.getAll();
         mav.addObject("datalist", list);
         return mav;
     }
