@@ -14,7 +14,7 @@
  */
 module.exports = {
     "ui": {
-        "port": 3001
+        "port": 3002
     },
     "files": false,
     "watchEvents": [
@@ -31,7 +31,7 @@ module.exports = {
          index: "index.html"
     },
     "proxy": false,
-    "port": 3000,
+    "port": 3001,
     "middleware": false,
     "serveStatic": [],
     "ghostMode": {

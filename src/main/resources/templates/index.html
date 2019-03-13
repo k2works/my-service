@@ -6,8 +6,10 @@
     <style>
         h1 { font-size:18pt; font-weight:bold; color:gray; }
         body { font-size:13pt; color:gray; margin:5px 25px; }
-        pre { font-size:13pt; color:gray; padding:5px 10px; border:1px solid gray; }
-
+        pre { border: solid 3px #ddd; padding: 10; }
+        tr { margin:5px; }
+        th { padding:5px; color:white; background:darkgray; }
+        td { padding:5px; color:black; background:#f0f0f0;}
     </style>
 </head>
 <body>
@@ -42,7 +44,59 @@
     <input type="submit" value="Click"/>
 </form>
 
-<pre th:text="${data}"></pre>
+<table>
+<form method="post" action="/" th:object="${formModel}">
+    <tr>
+        <td>
+            <label for="name">名前</label>
+        </td>
+        <td>
+            <input type="text" name="name" th:value="*{name}" />
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label for="age">年齢</label>
+        </td>
+        <td>
+            <input type="text" name="age" th:value="*{age}" />
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label for="mail">メール</label>
+        </td>
+        <td>
+            <input type="text" name="mail" th:value="*{mail}" />
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <label for="memo">メモ</label>
+        </td>
+        <td>
+           <textarea name="memo" th:text="*{memo}" cols="20" rows="5"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit"></td>
+    </tr>
+</form>
+</table>
+<hr/>
+<table>
+    <tr>
+        <th>ID</th>
+    </tr>
+    <tr th:each="obj : ${datalist}">
+        <td th:text="${obj.id}"></td>
+        <td th:text="${obj.name}"></td>
+    </tr>
+</table>
 
 <script th:inline="javascript">
         function setActionUrl() {
