@@ -10,6 +10,10 @@ import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="mydata")
+@NamedQuery(
+        name="findWithName",
+        query="from MyData where name like :fname"
+)
 public class MyData {
 
     @Id
