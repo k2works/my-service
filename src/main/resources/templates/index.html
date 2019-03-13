@@ -82,7 +82,8 @@
             <label for="memo">メモ</label>
         </td>
         <td>
-           <textarea name="memo" th:text="*{memo}" cols="20" rows="5"></textarea>
+           <textarea name="memo" th:text="*{memo}" th:errorclass="err" cols="20" rows="5"></textarea>
+            <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" th:errorclass="err"></div>
         </td>
     </tr>
     <tr>

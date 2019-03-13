@@ -27,21 +27,21 @@ public class MyDataController {
         d1.setName("tuyano");
         d1.setAge(123);
         d1.setMail("syoda@tuyano.com");
-        d1.setMemo("this is my data!");
+        d1.setMemo("090999999");
         repository.saveAndFlush(d1);
         // 2つめのダミーデータ作成
         MyData d2 = new MyData();
         d2.setName("hanako");
         d2.setAge(15);
         d2.setMail("hanako@flower");
-        d2.setMemo("my girl friend.");
+        d2.setMemo("080888888");
         repository.saveAndFlush(d2);
         // 3つめのダミーデータ作成
         MyData d3 = new MyData();
         d3.setName("sachiko");
         d3.setAge(37);
         d3.setMail("sachico@happy");
-        d3.setMemo("my work friend...");
+        d3.setMemo("070777777");
         repository.saveAndFlush(d3);
     }
 
