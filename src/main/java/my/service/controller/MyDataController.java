@@ -59,7 +59,7 @@ public class MyDataController {
             @ModelAttribute("formModel") MyData myData,
             ModelAndView mav) {
         mav.setViewName("index");
-        mav.addObject("msg","this is sample content.");
+        mav.addObject("msg","MyDataのサンプルです。");
         Iterable<MyData> list = dao.getAll();
         mav.addObject("datalist", list);
         return mav;

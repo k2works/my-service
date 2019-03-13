@@ -97,10 +97,16 @@
     <tr>
         <th>ID</th>
         <th>名前</th>
+        <th>メール</th>
+        <th>年齢</th>
+        <th>メモ</th>
     </tr>
     <tr th:each="obj : ${datalist}">
         <td th:text="${obj.id}"></td>
         <td th:text="${obj.name}"></td>
+        <td th:text="${obj.mail}"></td>
+        <td th:text="${obj.age}"></td>
+        <td th:text="${obj.memo}"></td>
     </tr>
 </table>
 
