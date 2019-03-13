@@ -5,6 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "gradle test",
+    "build": "gradle build",
+    "start": "gradle bootRun",
+    "watch": "watch 'npm run build' ./src",
+    "web": "browser-sync start --config bs-config.js",
+    "sam:local": "sam local start-api --template sam.yaml --host 0.0.0.0",
     "sam:describe": "aws cloudformation describe-stacks --stack-name ServerlessSpringApi",
     "sam:package": "mvn package; sam package --template-file sam.yaml --s3-bucket my-service-k2works --output-template-file packaged.yaml",
     "sam:deploy": "sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --capabilities CAPABILITY_IAM --parameter-overrides ENV=production"
@@ -18,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/k2works/my-service/issues"
   },
-  "homepage": "https://github.com/k2works/my-service#readme"
+  "homepage": "https://github.com/k2works/my-service#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "watch": "^1.0.2"
+  }
 }

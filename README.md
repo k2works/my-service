@@ -9,6 +9,7 @@
 | ソフトウェア   | バージョン | 備考 |
 | :------------- | :--------- | :--- |
 | java           | 8      |      |
+| node           | 8.10.0      |      |
 | docker         | 18.09.2    |      |
 | docker-compose | 1.23.2    |      |
 | sam cli        | 0.12.0  |      |
@@ -58,6 +59,12 @@ $ sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --ca
 ### 運用
 
 ```bash
+npm install node-run-all watch --save-dev
+npm install --save-dev browser-sync
+npx brower-sync init
+```
+
+```bash
 $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 ```
 
@@ -67,3 +74,4 @@ $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 
 - [awslabs/aws-serverless-java-container](https://github.com/awslabs/aws-serverless-java-container/wiki)
 - [Developer Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)
+- [npm scriptsを使おう](https://qiita.com/liply/items/cccc6a7b703c1d3ab04f#npm-script%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E4%B8%89%E7%A8%AE%E3%81%AE%E7%A5%9E%E5%99%A8)
