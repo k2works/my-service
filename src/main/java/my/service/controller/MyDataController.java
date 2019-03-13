@@ -5,12 +5,15 @@ import my.service.repository.MyDataRepository;
 import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import java.util.Optional;
 
 @Controller
 public class MyDataController {
@@ -58,6 +61,24 @@ public class MyDataController {
     public ModelAndView form(
             @ModelAttribute("formModel") MyData myData,
             ModelAndView mav) {
+        repository.saveAndFlush(myData);
+        return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute MyData myData,
+                             @PathVariable int id,
+                             ModelAndView mav) {
+        mav.setViewName("edit");
+        mav.addObject("title","edit mydata.");
+        Optional<MyData> data = repository.findById((long)id);
+        mav.addObject("formModel", data.get());
+        return mav;
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @Transactional(readOnly = false)
+    public ModelAndView update(@ModelAttribute MyData myData,ModelAndView mav) {
         repository.saveAndFlush(myData);
         return new ModelAndView("redirect:/");
     }
