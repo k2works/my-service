@@ -58,8 +58,4 @@ public class HeloController {
         return ret;
     }
 
-    @RequestMapping("/home")
-    public String home() {
-        return "forward:/helo";
-    }
 }

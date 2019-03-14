@@ -174,6 +174,11 @@ public class MyDataController {
         return mav;
     }
 
+    @RequestMapping("/home")
+    public String home() {
+        return "forward:/";
+    }
+
     @PostConstruct
     public void init() {
         dao = new MyDataDaoImpl(entityManager);

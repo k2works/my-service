@@ -11,9 +11,10 @@
     "app:web": "browser-sync start --config bs-config.js",
     "app:watch": "watch 'npm run build' ./src",
     "sam:local": "sam local start-api --template sam.yaml --host 0.0.0.0",
-    "sam:describe": "aws cloudformation describe-stacks --stack-name ServerlessSpringApi",
     "sam:package": "mvn package; sam package --template-file sam.yaml --s3-bucket my-service-k2works --output-template-file packaged.yaml",
     "sam:deploy": "sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --capabilities CAPABILITY_IAM --parameter-overrides ENV=production",
+    "sam:describe": "aws cloudformation describe-stacks --stack-name ServerlessSpringApi",
+    "sam:release": "rm -rf target; npm-run-all sam:package sam:deploy sam:describe",
     "db": "npm-run-all db:*",
     "db:mongo": "docker-compose up"
   },

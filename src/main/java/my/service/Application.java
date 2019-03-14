@@ -1,6 +1,7 @@
 package my.service;
 
 import my.service.controller.HeloApiController;
+import my.service.controller.MyDataController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -17,7 +18,7 @@ import my.service.controller.PingController;
 @SpringBootApplication
 // We use direct @Import instead of @ComponentScan to speed up cold starts
 // @ComponentScan(basePackages = "my.service.controller")
-@Import({ PingController.class, HeloApiController.class })
+@Import({ PingController.class, HeloApiController.class, MyDataController.class})
 public class Application extends SpringBootServletInitializer {
 
     /*

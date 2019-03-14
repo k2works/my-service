@@ -23,7 +23,7 @@ Resources:
       CodeUri: target/my-service-1.0-SNAPSHOT-lambda-package.zip
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
-      Timeout: 30
+      Timeout: 300
       Events:
         GetResource:
           Type: Api
