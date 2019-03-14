@@ -1,6 +1,9 @@
 package my.service.controller;
 
+import my.service.component.MyDataBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +13,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class HeloController {
     private static String ENV = "ENV";
 
+    @Autowired
+    MyDataBean myDataBean;
+
+    @RequestMapping(value = "/helo/{id}", method = RequestMethod.GET)
+    public ModelAndView indexById(@PathVariable long id, ModelAndView mav) {
+        mav.setViewName("pickup");
+        mav.addObject("title","Pickup Page");
+        String table = "<table>"
+                + myDataBean.getTableTagById(id)
+                + "</table>";
+        mav.addObject("msg","pickup Data id = " + id);
+        mav.addObject("data", table);
+        return mav;
+    }
+
     @RequestMapping(value = "/helo", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
         setEnv(mav);
-        mav.setViewName("index");
+        mav.setViewName("helo");
         mav.addObject("msg", "フォームを送信して下さい。");
         return mav;
     }
@@ -42,7 +60,7 @@ public class HeloController {
         }
         setEnv(mav);
         mav.addObject("msg", res);
-        mav.setViewName("index");
+        mav.setViewName("helo");
         return mav;
     }
 
