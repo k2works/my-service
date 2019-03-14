@@ -1,20 +1,21 @@
 package my.service.controller;
 
+import my.service.utils.EnvUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class HeloController {
-    private static String ENV = "ENV";
 
     @RequestMapping(value = "/helo", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
-        setEnv(mav);
-        mav.setViewName("index");
+        mav.setViewName("helo");
         mav.addObject("msg", "フォームを送信して下さい。");
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -40,16 +41,16 @@ public class HeloController {
         } catch (NullPointerException e) {
             res += "null";
         }
-        setEnv(mav);
         mav.addObject("msg", res);
-        mav.setViewName("index");
+        mav.setViewName("helo");
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
     @RequestMapping("/other")
     public String other() {
         String ret;
-        if (getEnv().equals("production")) {
+        if (EnvUtil.getEnv().equals("production")) {
           ret = "redirect:/Prod/helo";
         } else {
           ret = "redirect:/helo";
@@ -57,18 +58,4 @@ public class HeloController {
         return ret;
     }
 
-    @RequestMapping("/home")
-    public String home() {
-        return "forward:/helo";
-    }
-
-    private void setEnv(ModelAndView mav) {
-        mav.addObject("env", getEnv());
-    }
-
-    private String getEnv() {
-        String env = System.getenv(ENV);
-        if (env == null) return "development";
-        return env;
-    }
 }

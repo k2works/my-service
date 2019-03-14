@@ -59,7 +59,7 @@ $ sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --ca
 ### 運用
 
 ```bash
-npm install node-run-all watch --save-dev
+npm install npm-run-all watch foreman --save-dev
 npm install --save-dev browser-sync
 npx brower-sync init
 ```
@@ -68,6 +68,12 @@ npx brower-sync init
 $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 ```
 
+```bash
+docker-compose up
+```
+
+http://0.0.0.0:8081
+
 **[⬆ back to top](#構成)**
 
 ## 参照
@@ -75,3 +81,6 @@ $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 - [awslabs/aws-serverless-java-container](https://github.com/awslabs/aws-serverless-java-container/wiki)
 - [Developer Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)
 - [npm scriptsを使おう](https://qiita.com/liply/items/cccc6a7b703c1d3ab04f#npm-script%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E4%B8%89%E7%A8%AE%E3%81%AE%E7%A5%9E%E5%99%A8)
+- [SpringBootのプロジェクトをはじめるときにやる5つのこと](https://wannabe-jellyfish.hatenablog.com/entry/2016/05/08/154028)
+- [docker-composeでmongoDB環境を構築して使う](https://qiita.com/mistolteen/items/ce38db7981cc2fe7821a)
+- [Tips: Docker内にインストールしたMongoDBにDocker外からアクセスする](https://tech.marketenterprise.co.jp/2018/12/13/tips-docker%E5%86%85%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9Fmongodb%E3%81%ABdocker%E5%A4%96%E3%81%8B%E3%82%89%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99/)

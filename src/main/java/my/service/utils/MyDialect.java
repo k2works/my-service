@@ -1,0 +1,28 @@
+package my.service.utils;
+
+import org.thymeleaf.dialect.AbstractProcessorDialect;
+import org.thymeleaf.processor.IProcessor;
+import org.thymeleaf.standard.StandardDialect;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class MyDialect extends AbstractProcessorDialect {
+
+    private static final String DIALECT_NAME = "My Dialect";
+
+    public MyDialect() {
+        super(DIALECT_NAME, "my", StandardDialect.PROCESSOR_PRECEDENCE);
+    }
+
+    public MyDialect(String name, String prefix, int processorPrecedence) {
+        super(name, prefix, processorPrecedence);
+    }
+
+    @Override
+    public Set<IProcessor> getProcessors(String dialectPrefix) {
+        final Set<IProcessor> processors = new HashSet<IProcessor>();
+        processors.add(new MyPageAttributeTagProcessor(dialectPrefix));
+        return processors;
+    }
+}

@@ -19,47 +19,24 @@
 </head>
 <body>
 <h1 th:text="'Helo ' + ${env} + ' page'">Helo page</h1>
-<p class="msg" th:text="${msg}">please wait...</p>
+<p class="msg" th:text="${msg}"></p>
 
 <table>
-<form method="post" action="/" th:object="${formModel}">
+<form method="post" action="/mongo">
     <tr>
         <td>
             <label for="name">名前</label>
         </td>
         <td>
-            <input type="text" name="name" th:value="*{name}" th:errorclass="err" />
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="err"></div>
+            <input type="text" name="name"/>
         </td>
     </tr>
-
-    <tr>
-        <td>
-            <label for="age">年齢</label>
-        </td>
-        <td>
-            <input type="text" name="age" th:value="*{age}" th:errorclass="err" />
-            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="err"></div>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <label for="mail">メール</label>
-        </td>
-        <td>
-            <input type="text" name="mail" th:value="*{mail}" th:errorclass="err" />
-            <div th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" th:errorclass="err"></div>
-        </td>
-    </tr>
-
     <tr>
         <td>
             <label for="memo">メモ</label>
         </td>
         <td>
-           <textarea name="memo" th:text="*{memo}" th:errorclass="err" cols="20" rows="5"></textarea>
-            <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" th:errorclass="err"></div>
+           <textarea name="memo" cols="20" rows="5"></textarea>
         </td>
     </tr>
     <tr>
@@ -71,18 +48,14 @@
 <hr/>
 <table>
     <tr>
-        <th>ID</th>
         <th>名前</th>
-        <th>メール</th>
-        <th>年齢</th>
         <th>メモ</th>
+        <th>日時</th>
     </tr>
     <tr th:each="obj : ${datalist}">
-        <td th:text="${obj.id}"></td>
         <td th:text="${obj.name}"></td>
-        <td th:text="${obj.mail}"></td>
-        <td th:text="${obj.age}"></td>
         <td th:text="${obj.memo}"></td>
+        <td th:text="${obj.date}"></td>
     </tr>
 </table>
 
@@ -91,9 +64,9 @@
             var env = /*[[${env}]]*/;
 
             if (env === 'production') {
-               document.forms[0].action = "/Prod/";
+               document.forms[0].action = "/Prod/mongo";
             } else {
-               document.forms[0].action = "/";
+               document.forms[0].action = "/mongo";
             }
         }
         setActionUrl();
