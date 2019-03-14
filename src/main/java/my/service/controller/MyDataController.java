@@ -3,6 +3,7 @@ package my.service.controller;
 import my.service.component.MyDataBean;
 import my.service.model.MyData;
 import my.service.model.MyDataDaoImpl;
+import my.service.repository.MyDataMongoRepository;
 import my.service.repository.MyDataRepository;
 import my.service.service.MyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
