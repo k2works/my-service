@@ -59,7 +59,7 @@ $ sam deploy --template-file packaged.yaml --stack-name ServerlessSpringApi --ca
 ### 運用
 
 ```bash
-npm install node-run-all watch --save-dev
+npm install npm-run-all watch foreman --save-dev
 npm install --save-dev browser-sync
 npx brower-sync init
 ```

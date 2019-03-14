@@ -6,9 +6,10 @@
   "scripts": {
     "test": "gradle test",
     "build": "gradle build",
-    "start": "gradle bootRun",
-    "watch": "watch 'npm run build' ./src",
-    "web": "browser-sync start --config bs-config.js",
+    "start": "nf start -j Procfile",
+    "app:spring": "gradle bootRun",
+    "app:web": "browser-sync start --config bs-config.js",
+    "app:watch": "watch 'npm run build' ./src",
     "sam:local": "sam local start-api --template sam.yaml --host 0.0.0.0",
     "sam:describe": "aws cloudformation describe-stacks --stack-name ServerlessSpringApi",
     "sam:package": "mvn package; sam package --template-file sam.yaml --s3-bucket my-service-k2works --output-template-file packaged.yaml",
@@ -26,6 +27,8 @@
   "homepage": "https://github.com/k2works/my-service#readme",
   "devDependencies": {
     "browser-sync": "^2.26.3",
+    "foreman": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "watch": "^1.0.2"
   }
 }
