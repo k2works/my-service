@@ -5,3 +5,4 @@ my-service.iml
 output-sam.yaml
 packaged.yaml
 node_modules/
+db/

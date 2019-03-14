@@ -68,6 +68,12 @@ npx brower-sync init
 $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 ```
 
+```bash
+docker-compose up
+```
+
+http://0.0.0.0:8081
+
 **[⬆ back to top](#構成)**
 
 ## 参照
@@ -76,3 +82,4 @@ $ aws cloudformation delete-stack --stack-name ServerlessSpringApi
 - [Developer Tools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)
 - [npm scriptsを使おう](https://qiita.com/liply/items/cccc6a7b703c1d3ab04f#npm-script%E3%81%8A%E3%81%98%E3%81%95%E3%82%93%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E4%B8%89%E7%A8%AE%E3%81%AE%E7%A5%9E%E5%99%A8)
 - [SpringBootのプロジェクトをはじめるときにやる5つのこと](https://wannabe-jellyfish.hatenablog.com/entry/2016/05/08/154028)
+- [docker-composeでmongoDB環境を構築して使う](https://qiita.com/mistolteen/items/ce38db7981cc2fe7821a)
