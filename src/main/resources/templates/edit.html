@@ -15,7 +15,7 @@
 <body>
 <h1 th:text="'Edit ' + ${env} + ' page'">Edit page</h1>
 <table>
-    <form action="/edit" th:object="${formModel}">
+    <form method="post" action="/edit" th:object="${formModel}">
         <input type="hidden" name="id" th:value="*{id}" />
         <tr>
             <td><label for="name">名前</label></td>
@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td><label for="memo">メモ</label></td>
-            <td><textarea name="memo" cols="20" rows="5"></textarea></td>
+            <td><textarea name="memo" cols="20" rows="5" th:text="*{memo}"></textarea></td>
         <tr>
             <td></td>
         <td><input type="submit"></td>
