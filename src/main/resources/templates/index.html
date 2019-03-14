@@ -12,10 +12,15 @@
         td { padding:5px; color:black; background:#f0f0f0;}
         .err { color:red; }
     </style>
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 <h1 th:text="'Helo ' + ${env} + ' page'">Helo page</h1>
 <p class="msg" th:text="${msg}">please wait...</p>
+<ol id="obj"></ol>
 
 <form method="post">
     <div>
@@ -111,6 +116,17 @@
 </table>
 
 <script th:inline="javascript">
+        $(document).ready(function(){
+          var num = /*[[${param.id[0]}]]*/;
+          $.get("/rest/" + num, null, callback);
+        });
+        function callback(result){
+          $('#obj').append('<li>id: ' + result.id + '</li>');
+          $('#obj').append('<li>name: ' + result.name + '</li>');
+          $('#obj').append('<li>mail: ' + result.age + '</li>');
+          $('#obj').append('<li>age: ' + result.age + '</li>');
+          $('#obj').append('<li>memo: ' + result.memo + '</li>');
+        }
         function setActionUrl() {
             var env = /*[[${env}]]*/;
 
