@@ -3,6 +3,7 @@ package my.service.controller;
 import my.service.model.MsgData;
 import my.service.model.MsgDataDaoImpl;
 import my.service.repository.MsgDataRepository;
+import my.service.utils.EnvUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -37,6 +38,7 @@ public class MsgDataController {
         mav.addObject("formModel", msgdata);
         List<MsgData> list = (List<MsgData>)dao.getAll();
         mav.addObject("datalist", list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 

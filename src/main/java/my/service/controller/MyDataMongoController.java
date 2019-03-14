@@ -2,6 +2,7 @@ package my.service.controller;
 
 import my.service.model.MyDataMongo;
 import my.service.repository.MyDataMongoRepository;
+import my.service.utils.EnvUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class MyDataMongoController {
         mav.addObject("msg", "MyDataMongoのサンプルです。");
         Iterable<MyDataMongo> list = repository.findAll();
         mav.addObject("datalist",list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -45,6 +47,7 @@ public class MyDataMongoController {
         mav.addObject("value","");
         List<MyDataMongo> list = repository.findAll();
         mav.addObject("datalist",list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -61,6 +64,7 @@ public class MyDataMongoController {
             mav.addObject("value",param);
             List<MyDataMongo> list = repository.findByName(param);
             mav.addObject("datalist", list);
+            EnvUtil.setEnv(mav);
         }
         return mav;
     }

@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<h1 th:text="${title}">find page</h1>
+<h1 th:text="'Find ' + ${env} + ' page'">find page</h1>
 <p th:text="${msg}"></p>
 <table>
     <form action="/find" method="post">
@@ -42,5 +42,17 @@
         <td th:text="${obj.age}"></td>
     </tr>
 </table>
+<script th:inline="javascript">
+        function setActionUrl() {
+            var env = /*[[${env}]]*/;
+
+            if (env === 'production') {
+               document.forms[0].action = "/Prod/find";
+            } else {
+               document.forms[0].action = "/find";
+            }
+        }
+        setActionUrl();
+</script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import my.service.model.MyDataDaoImpl;
 import my.service.repository.MyDataMongoRepository;
 import my.service.repository.MyDataRepository;
 import my.service.service.MyDataService;
+import my.service.utils.EnvUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,6 +50,7 @@ public class MyDataController {
                 + "</table>";
         mav.addObject("msg","pickup Data id = " + id);
         mav.addObject("data", table);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -61,6 +63,7 @@ public class MyDataController {
         mav.addObject("msg","MyDataのサンプルです。");
         List<MyData> list = service.getAll();
         mav.addObject("datalist", list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -79,6 +82,7 @@ public class MyDataController {
             mav.addObject("msg","sorry, error is occured...");
             Iterable<MyData> list = repository.findAll();
             mav.addObject("datalist", list);
+            EnvUtil.setEnv(mav);
             res = mav;
         }
         return res;
@@ -92,6 +96,7 @@ public class MyDataController {
         mav.addObject("title","edit mydata.");
         Optional<MyData> data = repository.findById((long)id);
         mav.addObject("formModel", data.get());
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -108,6 +113,7 @@ public class MyDataController {
         mav.addObject("title", "delete mydata.");
         Optional<MyData> data = repository.findById((long)id);
         mav.addObject("formModel",data.get());
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -126,6 +132,7 @@ public class MyDataController {
         mav.addObject("value","");
         List<MyData> list = service.getAll();
         mav.addObject("datalist", list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -142,6 +149,7 @@ public class MyDataController {
             List<MyData> list = service.find(param);
             mav.addObject("datalist", list);
         }
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -151,6 +159,7 @@ public class MyDataController {
         mav.addObject("msg","MyDataのサンプルです。");
         List<MyData> list = service.getAll();
         mav.addObject("datalist", list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 
@@ -161,6 +170,7 @@ public class MyDataController {
         mav.addObject("msg", "MyDataのサンプルです。");
         Page<MyData> list = repository.findAll(pageable);
         mav.addObject("datalist", list);
+        EnvUtil.setEnv(mav);
         return mav;
     }
 

@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<h1 th:text="${title}">Edit page</h1>
+<h1 th:text="${title} + ' ' + ${env} + ' page'">Edit page</h1>
 <table>
     <form action="/delete" method="post" th:object="${formModel}">
         <input type="hidden" name="id" th:value="*{id}" />

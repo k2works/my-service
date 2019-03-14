@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<h1 th:text="${title}">Edit page</h1>
+<h1 th:text="'Edit ' + ${env} + ' page'">Edit page</h1>
 <table>
     <form action="/edit" th:object="${formModel}">
         <input type="hidden" name="id" th:value="*{id}" />
@@ -39,5 +39,17 @@
         </tr>
     </form>
 </table>
+<script th:inline="javascript">
+        function setActionUrl() {
+            var env = /*[[${env}]]*/;
+
+            if (env === 'production') {
+               document.forms[0].action = "/Prod/edit";
+            } else {
+               document.forms[0].action = "/edit";
+            }
+        }
+        setActionUrl();
+</script>
 </body>
 </html>
