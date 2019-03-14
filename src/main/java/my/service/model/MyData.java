@@ -48,9 +48,14 @@ public class MyData {
     @Column(nullable = true)
     private List<MsgData> msgdatas;
 
+    public List<MsgData> getMsgdatas() {
+        return msgdatas;
+    }
+
     public void setMsgdatas(List<MsgData> msgdatas) {
         this.msgdatas = msgdatas;
     }
+
     public long getId() {
         return id;
     }

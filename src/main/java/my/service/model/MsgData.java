@@ -22,11 +22,11 @@ public class MsgData {
     private String message;
 
     @ManyToOne
-    private MyData myData;
+    private MyData mydata;
 
     public MsgData() {
         super();
-        myData = new MyData();
+        mydata = new MyData();
     }
 
     public long getId() {
@@ -54,10 +54,10 @@ public class MsgData {
     }
 
     public MyData getMyData() {
-        return myData;
+        return mydata;
     }
 
-    public void setMyData(MyData myData) {
-        this.myData = myData;
+    public void setMyData(MyData mydata) {
+        this.mydata = mydata;
     }
 }
