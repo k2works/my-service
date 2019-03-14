@@ -20,35 +20,6 @@
 <body>
 <h1 th:text="'Helo ' + ${env} + ' page'">Helo page</h1>
 <p class="msg" th:text="${msg}">please wait...</p>
-<ol id="obj"></ol>
-
-<form method="post">
-    <div>
-        <input type="checkbox" id="check1" name="check1"/>
-        <label for="check1">チェク</label>
-    </div>
-    <div>
-        <input type="radio" id="radioA" name="radio1" value="male"/>
-        <label for="radioA">男性</label>
-    </div>
-    <div>
-        <input type="radio" id="radioB" name="radio1" value="female"/>
-        <label for="radioB">女性</label>
-    </div>
-    <div>
-        <select name="select1" id="select1" size="4">
-            <option value="Windows">Windows</option>
-            <option value="Mac">Mac</option>
-            <option value="Linux">Linux</option>
-        </select>
-        <select name="select2" id="select2" size="4" multiple="multiple">
-            <option value="Android">Android</option>
-            <option value="iphone">iphone</option>
-            <option value="Winfone">Windows Phone</option>
-        </select>
-    </div>
-    <input type="submit" value="Click"/>
-</form>
 
 <table>
 <form method="post" action="/" th:object="${formModel}">
@@ -116,24 +87,13 @@
 </table>
 
 <script th:inline="javascript">
-        $(document).ready(function(){
-          var num = /*[[${param.id[0]}]]*/;
-          $.get("/rest/" + num, null, callback);
-        });
-        function callback(result){
-          $('#obj').append('<li>id: ' + result.id + '</li>');
-          $('#obj').append('<li>name: ' + result.name + '</li>');
-          $('#obj').append('<li>mail: ' + result.age + '</li>');
-          $('#obj').append('<li>age: ' + result.age + '</li>');
-          $('#obj').append('<li>memo: ' + result.memo + '</li>');
-        }
         function setActionUrl() {
             var env = /*[[${env}]]*/;
 
             if (env === 'production') {
-               document.forms[0].action = "/Prod/helo";
+               document.forms[0].action = "/Prod/";
             } else {
-               document.forms[0].action = "/helo";
+               document.forms[0].action = "/";
             }
         }
         setActionUrl();

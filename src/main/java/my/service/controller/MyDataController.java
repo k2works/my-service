@@ -1,11 +1,13 @@
 package my.service.controller;
 
+import my.service.component.MyDataBean;
 import my.service.model.MyData;
 import my.service.model.MyDataDaoImpl;
 import my.service.repository.MyDataRepository;
 import my.service.service.MyDataService;
-import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -34,31 +36,21 @@ public class MyDataController {
 
     MyDataDaoImpl dao;
 
-    @PostConstruct
-    public void init() {
-        dao = new MyDataDaoImpl(entityManager);
-        // 1つめのダミーデータ作成
-        MyData d1 = new MyData();
-        d1.setName("tuyano");
-        d1.setAge(123);
-        d1.setMail("syoda@tuyano.com");
-        d1.setMemo("090999999");
-        repository.saveAndFlush(d1);
-        // 2つめのダミーデータ作成
-        MyData d2 = new MyData();
-        d2.setName("hanako");
-        d2.setAge(15);
-        d2.setMail("hanako@flower");
-        d2.setMemo("080888888");
-        repository.saveAndFlush(d2);
-        // 3つめのダミーデータ作成
-        MyData d3 = new MyData();
-        d3.setName("sachiko");
-        d3.setAge(37);
-        d3.setMail("sachico@happy");
-        d3.setMemo("070777777");
-        repository.saveAndFlush(d3);
+    @Autowired
+    MyDataBean myDataBean;
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView indexById(@PathVariable long id, ModelAndView mav) {
+        mav.setViewName("pickup");
+        mav.addObject("title","Pickup Page");
+        String table = "<table>"
+                + myDataBean.getTableTagById(id)
+                + "</table>";
+        mav.addObject("msg","pickup Data id = " + id);
+        mav.addObject("data", table);
+        return mav;
     }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(
@@ -152,4 +144,48 @@ public class MyDataController {
         return mav;
     }
 
+    @RequestMapping(value = "/ajax", method = RequestMethod.GET)
+    public ModelAndView index(ModelAndView mav) {
+        mav.setViewName("ajax");
+        mav.addObject("msg","MyDataのサンプルです。");
+        List<MyData> list = service.getAll();
+        mav.addObject("datalist", list);
+        return mav;
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ModelAndView index(ModelAndView mav, Pageable pageable) {
+        mav.setViewName("page");
+        mav.addObject("title", "Find Page");
+        mav.addObject("msg", "MyDataのサンプルです。");
+        Page<MyData> list = repository.findAll(pageable);
+        mav.addObject("datalist", list);
+        return mav;
+    }
+
+    @PostConstruct
+    public void init() {
+        dao = new MyDataDaoImpl(entityManager);
+        // 1つめのダミーデータ作成
+        MyData d1 = new MyData();
+        d1.setName("tuyano");
+        d1.setAge(123);
+        d1.setMail("syoda@tuyano.com");
+        d1.setMemo("090999999");
+        repository.saveAndFlush(d1);
+        // 2つめのダミーデータ作成
+        MyData d2 = new MyData();
+        d2.setName("hanako");
+        d2.setAge(15);
+        d2.setMail("hanako@flower");
+        d2.setMemo("080888888");
+        repository.saveAndFlush(d2);
+        // 3つめのダミーデータ作成
+        MyData d3 = new MyData();
+        d3.setName("sachiko");
+        d3.setAge(37);
+        d3.setMail("sachico@happy");
+        d3.setMemo("070777777");
+        repository.saveAndFlush(d3);
+    }
 }

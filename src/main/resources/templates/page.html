@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>top page</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <style>
+        h1 { font-size:18pt; font-weight:bold; color:gray; }
+        body { font-size:13pt; color:gray; margin:5px 25px; }
+        pre { border: solid 3px #ddd; padding: 10; }
+        tr { margin:5px; }
+        th { padding:5px; color:white; background:darkgray; }
+        td { padding:5px; color:black; background:#f0f0f0;}
+        .err { color:red; }
+    </style>
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<h1 th:text="'Helo ' + ${env} + ' page'">Helo page</h1>
+<p class="msg" th:text="${msg}">please wait...</p>
+
+<hr/>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>メール</th>
+        <th>年齢</th>
+        <th>メモ</th>
+    </tr>
+    <tr th:each="obj : ${datalist}">
+        <td th:text="${obj.id}"></td>
+        <td th:text="${obj.name}"></td>
+        <td th:text="${obj.mail}"></td>
+        <td th:text="${obj.age}"></td>
+        <td th:text="${obj.memo}"></td>
+    </tr>
+</table>
+
+<script th:inline="javascript">
+        function setActionUrl() {
+            var env = /*[[${env}]]*/;
+
+            if (env === 'production') {
+               document.forms[0].action = "/Prod/helo";
+            } else {
+               document.forms[0].action = "/helo";
+            }
+        }
+        setActionUrl();
+</script>
+</body>
+</html>

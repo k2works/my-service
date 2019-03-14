@@ -13,21 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class HeloController {
     private static String ENV = "ENV";
 
-    @Autowired
-    MyDataBean myDataBean;
-
-    @RequestMapping(value = "/helo/{id}", method = RequestMethod.GET)
-    public ModelAndView indexById(@PathVariable long id, ModelAndView mav) {
-        mav.setViewName("pickup");
-        mav.addObject("title","Pickup Page");
-        String table = "<table>"
-                + myDataBean.getTableTagById(id)
-                + "</table>";
-        mav.addObject("msg","pickup Data id = " + id);
-        mav.addObject("data", table);
-        return mav;
-    }
-
     @RequestMapping(value = "/helo", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
         setEnv(mav);
