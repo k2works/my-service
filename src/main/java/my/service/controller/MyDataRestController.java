@@ -1,5 +1,6 @@
 package my.service.controller;
 
+import my.service.component.MySampleBean;
 import my.service.model.MyData;
 import my.service.service.MyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class MyDataRestController {
     @RequestMapping("/rest/{num}")
     public MyData restBy(@PathVariable int num) {
         return service.get(num);
+    }
+
+    @Autowired
+    MySampleBean bean;
+
+    @RequestMapping("/count")
+    public int count() {
+        return bean.count();
     }
 }
