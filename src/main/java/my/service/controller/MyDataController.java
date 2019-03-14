@@ -3,6 +3,7 @@ package my.service.controller;
 import my.service.model.MyData;
 import my.service.model.MyDataDaoImpl;
 import my.service.repository.MyDataRepository;
+import my.service.service.MyDataService;
 import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class MyDataController {
 
     @Autowired
     MyDataRepository repository;
+
+    @Autowired
+    private MyDataService service;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -62,7 +66,7 @@ public class MyDataController {
             ModelAndView mav) {
         mav.setViewName("index");
         mav.addObject("msg","MyDataのサンプルです。");
-        Iterable<MyData> list = dao.getAll();
+        List<MyData> list = service.getAll();
         mav.addObject("datalist", list);
         return mav;
     }
@@ -127,7 +131,7 @@ public class MyDataController {
         mav.addObject("title", "Find Page");
         mav.addObject("msg","MyDataのサンプルです。");
         mav.addObject("value","");
-        Iterable<MyData> list = repository.findByAge(10,40);
+        List<MyData> list = service.getAll();
         mav.addObject("datalist", list);
         return mav;
     }
@@ -142,7 +146,7 @@ public class MyDataController {
             mav.addObject("title","Find result");
             mav.addObject("msg","「" + param + "」の検索結果");
             mav.addObject("value", param);
-            List<MyData> list = dao.find(param);
+            List<MyData> list = service.find(param);
             mav.addObject("datalist", list);
         }
         return mav;
